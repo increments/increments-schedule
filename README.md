@@ -1,8 +1,6 @@
 # Increments::Schedule
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/increments/schedule`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Find out our special remote days and eagerly wait them!
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+* `Increments::Schedule.each_remote_work_day`
+* `Increments::Schedule.each_normal_remote_work_day`
+* `Increments::Schedule.each_special_remote_work_day`
 
 ## Development
 
