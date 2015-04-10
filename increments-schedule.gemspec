@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Increments' schedule"
   spec.description   = spec.summary
-  spec.homepage      = 'https://github.com/yujinakayama/increments-schedule'
+  spec.homepage      = 'https://github.com/increments/increments-schedule'
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
