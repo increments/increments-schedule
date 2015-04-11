@@ -27,7 +27,7 @@ module Increments
     end
 
     def normal_remote_work_day?(date)
-      date.monday?
+      date.monday? && !rest_day?(date)
     end
 
     def special_remote_work_day?(date)
