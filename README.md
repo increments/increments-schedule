@@ -1,3 +1,7 @@
+[![Gem Version](http://img.shields.io/gem/v/increments-schedule.svg?style=flat)](http://badge.fury.io/rb/increments-schedule)
+[![Dependency Status](http://img.shields.io/gemnasium/increments/increments-schedule.svg?style=flat)](https://gemnasium.com/increments/increments-schedule)
+[![Build Status](https://travis-ci.org/increments/increments-schedule.svg?branch=master&style=flat)](https://travis-ci.org/increments/increments-schedule)
+
 # Increments::Schedule
 
 Find out our special remote days and eagerly wait them!
