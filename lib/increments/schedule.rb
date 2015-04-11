@@ -35,7 +35,7 @@ module Increments
     end
 
     def office_work_day?(date)
-      normal_office_work_day?(date) && !remote_work_day?(date)
+      !rest_day?(date) && !remote_work_day?(date)
     end
 
     def rest_day?(date)
