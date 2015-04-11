@@ -1,4 +1,4 @@
-require "increments/schedule/version"
+require 'increments/schedule/version'
 require 'active_support/all'
 require 'holiday_japan'
 
