@@ -7,17 +7,17 @@ module Increments
     extend self # rubocop:disable ModuleFunction
 
     [
-      [:each_remote_work_day,         proc { |date| remote_work_day?(date) }],
-      [:each_normal_remote_work_day,  proc { |date| normal_remote_work_day?(date) }],
-      [:each_special_remote_work_day, proc { |date| special_remote_work_day?(date) }]
-    ].each do |method_name, conditional|
-      define_method(method_name) do |max_date = nil, &block|
+      [:each_remote_work_day,         :remote_work_day?],
+      [:each_normal_remote_work_day,  :normal_remote_work_day?],
+      [:each_special_remote_work_day, :special_remote_work_day?]
+    ].each do |enumeration_method, predicate_method|
+      define_method(enumeration_method) do |max_date = nil, &block|
         return to_enum(__method__, max_date) unless block
 
         max_date ||= Date.today + 1.year
 
         Date.today.upto(max_date) do |date|
-          block.call(date) if conditional.call(date)
+          block.call(date) if send(predicate_method, date)
         end
       end
     end

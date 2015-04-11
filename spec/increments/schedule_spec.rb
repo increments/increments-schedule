@@ -2,6 +2,33 @@ require 'increments/schedule'
 
 module Increments
   RSpec.describe Schedule do
+    describe '.each_special_remote_work_day' do
+      let(:current_date) { Date.new(2015, 4, 1) }
+
+      around do |example|
+        Timecop.freeze(current_date) do
+          example.run
+        end
+      end
+
+      context 'when a block is given' do
+        it 'yields each special remote work day over the next year' do
+          expect { |probe| Schedule.each_special_remote_work_day(&probe) }
+            .to yield_successive_args(
+              Date.new(2015, 4, 28),
+              Date.new(2015, 12, 22),
+              Date.new(2016, 2, 12)
+            )
+        end
+      end
+
+      context 'when no block is given' do
+        it 'returns an Enumerator' do
+          expect(Schedule.each_special_remote_work_day).to be_an(Enumerator)
+        end
+      end
+    end
+
     #      April 2015
     # Su Mo Tu We Th Fr Sa
     #           1  2  3  4
