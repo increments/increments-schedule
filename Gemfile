@@ -8,3 +8,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'timecop'
 end
+
+group :development do
+  gem 'pry'
+end
