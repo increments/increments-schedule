@@ -4,7 +4,7 @@ require 'holiday_japan'
 
 module Increments
   module Schedule
-    module_function
+    extend self # rubocop:disable ModuleFunction
 
     [
       [:each_remote_work_day,         proc { |date| remote_work_day?(date) }],
@@ -31,12 +31,12 @@ module Increments
     end
 
     def special_remote_work_day?(date)
-      office_work_day?(date) &&
-        !office_work_day?(date.yesterday) && !office_work_day?(date.tomorrow)
+      normal_office_work_day?(date) &&
+        !normal_office_work_day?(date.yesterday) && !normal_office_work_day?(date.tomorrow)
     end
 
     def office_work_day?(date)
-      !rest_day?(date) && !normal_remote_work_day?(date)
+      normal_office_work_day?(date) && !remote_work_day?(date)
     end
 
     def rest_day?(date)
@@ -49,6 +49,12 @@ module Increments
 
     def holiday?(date)
       HolidayJapan.check(date)
+    end
+
+    private
+
+    def normal_office_work_day?(date)
+      !rest_day?(date) && !normal_remote_work_day?(date)
     end
   end
 end

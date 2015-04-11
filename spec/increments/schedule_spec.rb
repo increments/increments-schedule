@@ -75,5 +75,29 @@ module Increments
         it { should be false }
       end
     end
+
+    describe '.office_work_day?' do
+      subject { Schedule.office_work_day?(date) }
+
+      context 'with a non-holiday Tuesday' do
+        let(:date) { Date.new(2015, 5, 12) }
+        it { should be true }
+      end
+
+      context 'with a non-holiday Tuesday' do
+        let(:date) { Date.new(2015, 5, 16) }
+        it { should be false }
+      end
+
+      context 'with a normal remote work day' do
+        let(:date) { Date.new(2015, 5, 11) }
+        it { should be false }
+      end
+
+      context 'with a special remote work day' do
+        let(:date) { Date.new(2015, 4, 28) }
+        it { should be false }
+      end
+    end
   end
 end
