@@ -2,6 +2,14 @@ require 'increments/schedule'
 
 module Increments
   RSpec.describe Schedule do
+    #      April 2015
+    # Su Mo Tu We Th Fr Sa
+    #           1  2  3  4
+    #  5  6  7  8  9 10 11
+    # 12 13 14 15 16 17 18
+    # 19 20 21 22 23 24 25
+    # 26 27 28 29 30
+
     #       May 2015
     # Su Mo Tu We Th Fr Sa
     #                 1  2
@@ -30,6 +38,40 @@ module Increments
 
       context 'with weekend' do
         let(:date) { Date.new(2015, 5, 16) }
+        it { should be false }
+      end
+    end
+
+    describe '.special_remote_work_day?' do
+      subject { Schedule.special_remote_work_day?(date) }
+
+      context 'with a non-holiday Monday' do
+        let(:date) { Date.new(2015, 5, 11) }
+        it { should be false }
+      end
+
+      context 'with a holiday Monday' do
+        let(:date) { Date.new(2015, 5, 4) } # Greenery Day
+        it { should be false }
+      end
+
+      context 'with a Sunday' do
+        let(:date) { Date.new(2015, 5, 3) }
+        it { should be false }
+      end
+
+      context 'with a non-rest day sandwiched between normal remote work day and holiday' do
+        let(:date) { Date.new(2015, 4, 28) } # 4/29 is Showa Day
+        it { should be true }
+      end
+
+      context 'with a rest day sandwiched between rest day and holiday' do
+        let(:date) { Date.new(2015, 5, 3) } # 5/2 is Saturday, 5/4 is Greenery Day
+        it { should be false }
+      end
+
+      context 'with a Monday sandwiched between Sunday and holiday' do
+        let(:date) { Date.new(2015, 11, 2) } # 11/1 is Sunday, 11/3 is Culture Day
         it { should be false }
       end
     end
