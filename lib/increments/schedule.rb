@@ -1,5 +1,4 @@
 require 'increments/schedule/version'
-require 'active_support/all'
 require 'holiday_japan'
 
 module Increments
@@ -14,7 +13,7 @@ module Increments
       define_method(enumeration_method) do |max_date = nil, &block|
         return to_enum(__method__, max_date) unless block
 
-        max_date ||= Date.today + 1.year
+        max_date ||= Date.today + 365
 
         Date.today.upto(max_date) do |date|
           block.call(date) if send(predicate_method, date)
@@ -32,7 +31,7 @@ module Increments
 
     def special_remote_work_day?(date)
       normal_office_work_day?(date) &&
-        !normal_office_work_day?(date.yesterday) && !normal_office_work_day?(date.tomorrow)
+        !normal_office_work_day?(date - 1) && !normal_office_work_day?(date + 1)
     end
 
     def office_work_day?(date)
