@@ -24,6 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
+* `Increments::Schedule.each_super_hanakin`
 * `Increments::Schedule.each_pay_day`
 * `Increments::Schedule.each_remote_work_day`
 * `Increments::Schedule.each_normal_remote_work_day`

@@ -6,6 +6,7 @@ module Increments
     extend self # rubocop:disable ModuleFunction
 
     [
+      [:each_super_hanakin,           :super_hanakin?],
       [:each_pay_day,                 :pay_day?],
       [:each_remote_work_day,         :remote_work_day?],
       [:each_normal_remote_work_day,  :normal_remote_work_day?],
@@ -20,6 +21,10 @@ module Increments
           block.call(date) if send(predicate_method, date)
         end
       end
+    end
+
+    def super_hanakin?(date)
+      pay_day?(date) && date.friday?
     end
 
     def pay_day?(date)

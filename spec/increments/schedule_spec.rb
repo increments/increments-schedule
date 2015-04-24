@@ -155,5 +155,19 @@ module Increments
         it { should be false }
       end
     end
+
+    describe '.super_hanakin?' do
+      subject { Schedule.super_hanakin?(date) }
+
+      context 'with a Friday pay day' do
+        let(:date) { Date.new(2015, 4, 24) }
+        it { should be true }
+      end
+
+      context 'with a non-Friday pay day' do
+        let(:date) { Date.new(2015, 3, 25) }
+        it { should be false }
+      end
+    end
   end
 end
