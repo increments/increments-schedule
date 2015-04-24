@@ -6,6 +6,7 @@ module Increments
     extend self # rubocop:disable ModuleFunction
 
     [
+      [:each_pay_day,                 :pay_day?],
       [:each_remote_work_day,         :remote_work_day?],
       [:each_normal_remote_work_day,  :normal_remote_work_day?],
       [:each_special_remote_work_day, :special_remote_work_day?]
@@ -18,6 +19,15 @@ module Increments
         Date.today.upto(max_date) do |date|
           block.call(date) if send(predicate_method, date)
         end
+      end
+    end
+
+    def pay_day?(date)
+      return !rest_day?(date) if date.day == 25
+      next_basic_pay_day = Date.new(date.year, date.month, 25)
+      next_basic_pay_day = next_basic_pay_day.next_month if date > next_basic_pay_day
+      date.next_day.upto(next_basic_pay_day).all? do |date_until_basic_pay_day|
+        rest_day?(date_until_basic_pay_day)
       end
     end
 

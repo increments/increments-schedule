@@ -126,5 +126,34 @@ module Increments
         it { should be false }
       end
     end
+
+    describe '.pay_day?' do
+      subject { Schedule.pay_day?(date) }
+
+      context 'with a weekday 25th' do
+        let(:date) { Date.new(2015, 3, 25) }
+        it { should be true }
+      end
+
+      context 'with a rest day 25th' do
+        let(:date) { Date.new(2015, 4, 25) }
+        it { should be false }
+      end
+
+      context 'with a weekday 24th and the next 25th is a rest day' do
+        let(:date) { Date.new(2015, 4, 24) }
+        it { should be true }
+      end
+
+      context 'with a weekday 23th and the next 24th and 25th are rest day' do
+        let(:date) { Date.new(2015, 1, 23) }
+        it { should be true }
+      end
+
+      context 'with a rest day 26th' do
+        let(:date) { Date.new(2015, 3, 26) }
+        it { should be false }
+      end
+    end
   end
 end
