@@ -5,11 +5,11 @@ module Increments
   module Schedule
     extend self # rubocop:disable ModuleFunction
 
-    def super_hanakin?(date)
+    def super_hanakin?(date = Date.today)
       date.friday? && pay_day?(date)
     end
 
-    def pay_day?(date)
+    def pay_day?(date = Date.today)
       return work_day?(date) if date.day == 25
       next_basic_pay_day = Date.new(date.year, date.month, 25)
       next_basic_pay_day = next_basic_pay_day.next_month if date > next_basic_pay_day
@@ -18,36 +18,36 @@ module Increments
       end
     end
 
-    def work_day?(date)
+    def work_day?(date = Date.today)
       !rest_day?(date)
     end
 
-    def office_work_day?(date)
+    def office_work_day?(date = Date.today)
       work_day?(date) && !remote_work_day?(date)
     end
 
-    def remote_work_day?(date)
+    def remote_work_day?(date = Date.today)
       normal_remote_work_day?(date) || special_remote_work_day?(date)
     end
 
-    def normal_remote_work_day?(date)
+    def normal_remote_work_day?(date = Date.today)
       date.monday? && work_day?(date)
     end
 
-    def special_remote_work_day?(date)
+    def special_remote_work_day?(date = Date.today)
       normal_office_work_day?(date) &&
         !normal_office_work_day?(date - 1) && !normal_office_work_day?(date + 1)
     end
 
-    def rest_day?(date)
+    def rest_day?(date = Date.today)
       weekend?(date) || holiday?(date)
     end
 
-    def weekend?(date)
+    def weekend?(date = Date.today)
       date.saturday? || date.sunday?
     end
 
-    def holiday?(date)
+    def holiday?(date = Date.today)
       HolidayJapan.check(date)
     end
 
@@ -67,7 +67,7 @@ module Increments
 
     private
 
-    def normal_office_work_day?(date)
+    def normal_office_work_day?(date = Date.today)
       !rest_day?(date) && !normal_remote_work_day?(date)
     end
   end

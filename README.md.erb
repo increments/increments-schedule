@@ -36,7 +36,7 @@ methods = Increments::Schedule.public_instance_methods.select do |method|
 end
 
 methods.map do |method|
-  "* `Increments::Schedule.#{method}(date)`"
+  "* `Increments::Schedule.#{method}(date = Date.today)`"
 end.join("\n")
 %>
 

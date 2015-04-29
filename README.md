@@ -30,16 +30,16 @@ $ gem install increments-schedule
 
 ### Predicate Methods
 
-* `Increments::Schedule.super_hanakin?(date)`
-* `Increments::Schedule.pay_day?(date)`
-* `Increments::Schedule.work_day?(date)`
-* `Increments::Schedule.office_work_day?(date)`
-* `Increments::Schedule.remote_work_day?(date)`
-* `Increments::Schedule.normal_remote_work_day?(date)`
-* `Increments::Schedule.special_remote_work_day?(date)`
-* `Increments::Schedule.rest_day?(date)`
-* `Increments::Schedule.weekend?(date)`
-* `Increments::Schedule.holiday?(date)`
+* `Increments::Schedule.super_hanakin?(date = Date.today)`
+* `Increments::Schedule.pay_day?(date = Date.today)`
+* `Increments::Schedule.work_day?(date = Date.today)`
+* `Increments::Schedule.office_work_day?(date = Date.today)`
+* `Increments::Schedule.remote_work_day?(date = Date.today)`
+* `Increments::Schedule.normal_remote_work_day?(date = Date.today)`
+* `Increments::Schedule.special_remote_work_day?(date = Date.today)`
+* `Increments::Schedule.rest_day?(date = Date.today)`
+* `Increments::Schedule.weekend?(date = Date.today)`
+* `Increments::Schedule.holiday?(date = Date.today)`
 
 ### Enumeration Methods
 
