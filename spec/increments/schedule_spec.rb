@@ -2,7 +2,25 @@ require 'increments/schedule'
 
 module Increments
   RSpec.describe Schedule do
-    describe '.each_special_remote_work_day' do
+    it 'responds to enumeration methods for each predicate method' do
+      expect(Schedule).to respond_to(*%i(
+        each_super_hanakin
+        each_pay_day
+        each_remote_work_day
+        each_normal_remote_work_day
+        each_special_remote_work_day
+        each_office_work_day
+        each_rest_day
+        each_weekend
+        each_holiday
+      ))
+    end
+
+    it 'does not respond to enumeration methods for private predicate method' do
+      expect(Schedule).not_to respond_to(:each_normal_office_work_day)
+    end
+
+    describe 'enumeration methods' do
       let(:current_date) { Date.new(2015, 4, 1) }
 
       around do |example|

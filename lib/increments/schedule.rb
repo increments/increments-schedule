@@ -5,24 +5,6 @@ module Increments
   module Schedule
     extend self # rubocop:disable ModuleFunction
 
-    [
-      [:each_super_hanakin,           :super_hanakin?],
-      [:each_pay_day,                 :pay_day?],
-      [:each_remote_work_day,         :remote_work_day?],
-      [:each_normal_remote_work_day,  :normal_remote_work_day?],
-      [:each_special_remote_work_day, :special_remote_work_day?]
-    ].each do |enumeration_method, predicate_method|
-      define_method(enumeration_method) do |max_date = nil, &block|
-        return to_enum(__method__, max_date) unless block
-
-        max_date ||= Date.today + 365
-
-        Date.today.upto(max_date) do |date|
-          block.call(date) if send(predicate_method, date)
-        end
-      end
-    end
-
     def super_hanakin?(date)
       date.friday? && pay_day?(date)
     end
@@ -63,6 +45,20 @@ module Increments
 
     def holiday?(date)
       HolidayJapan.check(date)
+    end
+
+    public_instance_methods.select { |name| name.to_s.end_with?('?') }.each do |predicate_method|
+      enumeration_method = 'each_' + predicate_method.to_s.sub(/\?\z/, '')
+
+      define_method(enumeration_method) do |max_date = nil, &block|
+        return to_enum(__method__, max_date) unless block
+
+        max_date ||= Date.today + 365
+
+        Date.today.upto(max_date) do |date|
+          block.call(date) if send(predicate_method, date)
+        end
+      end
     end
 
     private
