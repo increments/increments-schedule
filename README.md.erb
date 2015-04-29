@@ -30,29 +30,27 @@ $ gem install increments-schedule
 
 ### Predicate Methods
 
-* `Increments::Schedule.super_hanakin?(date)`
-* `Increments::Schedule.pay_day?(date)`
-* `Increments::Schedule.work_day?(date)`
-* `Increments::Schedule.office_work_day?(date)`
-* `Increments::Schedule.remote_work_day?(date)`
-* `Increments::Schedule.normal_remote_work_day?(date)`
-* `Increments::Schedule.special_remote_work_day?(date)`
-* `Increments::Schedule.rest_day?(date)`
-* `Increments::Schedule.weekend?(date)`
-* `Increments::Schedule.holiday?(date)`
+<%=
+methods = Increments::Schedule.public_instance_methods.select do |method|
+  method.to_s.end_with?('?')
+end
+
+methods.map do |method|
+  "* `Increments::Schedule.#{method}(date)`"
+end.join("\n")
+%>
 
 ### Enumeration Methods
 
-* `Increments::Schedule.each_super_hanakin(max_date = Date.today + 365)`
-* `Increments::Schedule.each_pay_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_office_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_remote_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_normal_remote_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_special_remote_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
-* `Increments::Schedule.each_holiday(max_date = Date.today + 365)`
+<%=
+methods = Increments::Schedule.public_instance_methods.select do |method|
+  method.to_s.start_with?('each_')
+end
+
+methods.map do |method|
+  "* `Increments::Schedule.#{method}(max_date = Date.today + 365)`"
+end.join("\n")
+%>
 
 ## Development
 
