@@ -16,11 +16,15 @@ gem 'increments-schedule'
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install increments-schedule
+```bash
+$ gem install increments-schedule
+```
 
 ## Usage
 
