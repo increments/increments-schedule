@@ -24,7 +24,7 @@ module Increments
     end
 
     def super_hanakin?(date)
-      pay_day?(date) && date.friday?
+      date.friday? && pay_day?(date)
     end
 
     def pay_day?(date)
