@@ -2,7 +2,7 @@ require 'increments/schedule'
 
 module Increments
   RSpec.describe Schedule do
-    it 'responds to enumeration methods for each predicate method' do
+    it 'responds to enumeration methods for each date predicate method' do
       expect(Schedule).to respond_to(*%i(
         each_super_hanakin
         each_pay_day
@@ -20,7 +20,7 @@ module Increments
       expect(Schedule).not_to respond_to(:each_normal_office_work_day)
     end
 
-    describe 'enumeration methods' do
+    describe 'date enumeration methods' do
       let(:current_date) { Date.new(2015, 4, 1) }
 
       around do |example|
@@ -185,6 +185,35 @@ module Increments
       context 'with a non-Friday pay day' do
         let(:date) { Date.new(2015, 3, 25) }
         it { should be false }
+      end
+    end
+
+    describe '.each_work_time_range' do
+      let(:current_date) { Date.new(2015, 4, 1) }
+      let(:max_date) { Date.new(2015, 4, 6) }
+
+      around do |example|
+        Timecop.freeze(current_date) do
+          example.run
+        end
+      end
+
+      context 'when a block is given' do
+        it 'yields each work time range in localtime' do
+          expect { |probe| Schedule.each_work_time_range(max_date, &probe) }
+            .to yield_successive_args(
+              Time.local(2015, 4, 1, 10, 0)..Time.local(2015, 4, 1, 19, 0),
+              Time.local(2015, 4, 2, 10, 0)..Time.local(2015, 4, 2, 19, 0),
+              Time.local(2015, 4, 3, 10, 0)..Time.local(2015, 4, 3, 19, 0),
+              Time.local(2015, 4, 6, 10, 0)..Time.local(2015, 4, 6, 19, 0)
+            )
+        end
+      end
+
+      context 'when no block is given' do
+        it 'returns an Enumerator' do
+          expect(Schedule.each_special_remote_work_day).to be_an(Enumerator)
+        end
       end
     end
   end

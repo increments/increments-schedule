@@ -53,6 +53,7 @@ $ gem install increments-schedule
 * `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
 * `Increments::Schedule.each_holiday(max_date = Date.today + 365)`
+* `Increments::Schedule.each_work_time_range(max_date = Date.today + 365)`
 
 ## Development
 
