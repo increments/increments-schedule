@@ -5,8 +5,19 @@ module Increments
   module Schedule
     extend self # rubocop:disable ModuleFunction
 
+    DATE_OF_SPECIAL_TGIF_PARTY = Date.new(2015, 6, 19)
+    START_DATE_OF_NORMAL_TGIF_PARTY_SCHEDULE = Date.new(2015, 7, 1)
+
     def super_hanakin?(date = Date.today)
       date.friday? && pay_day?(date)
+    end
+
+    def tgif_party_day?(date = Date.today)
+      if date >= START_DATE_OF_NORMAL_TGIF_PARTY_SCHEDULE
+        date.friday? && (date.day / 7).odd? && work_day?(date)
+      else
+        date == DATE_OF_SPECIAL_TGIF_PARTY
+      end
     end
 
     def pay_day?(date = Date.today)

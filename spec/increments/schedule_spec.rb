@@ -188,6 +188,49 @@ module Increments
       end
     end
 
+    describe '.tgif_party_day?' do
+      subject { Schedule.tgif_party_day?(date) }
+
+      context 'until May 2015' do
+        context "even with the second Friday of the month" do
+          let(:date) { Date.new(2015, 5, 8) }
+          it { should be false }
+        end
+      end
+
+      context 'in June 2015' do
+        context "even with the second Friday of the month" do
+          let(:date) { Date.new(2015, 6, 12) }
+          it { should be false }
+        end
+
+        context "with 19th" do
+          let(:date) { Date.new(2015, 6, 19) }
+          it { should be true }
+        end
+      end
+
+      context 'since July 2015' do
+        [
+          ['first', false],
+          ['second', true],
+          ['third', false],
+          ['fourth', true],
+          ['fifth', false],
+        ].each_with_index do |(order, expected), index|
+          context "with the #{order} Friday of a month" do
+            let(:date) { Date.new(2015, 7, 3 + 7 * index) }
+            it { should be expected }
+          end
+        end
+
+        context 'with the fourth Friday of a month that is a holiday' do
+          let(:date) { Date.new(2016, 12, 23) }
+          it { should be false }
+        end
+      end
+    end
+
     describe '.each_work_time_range' do
       let(:current_date) { Date.new(2015, 4, 1) }
       let(:max_date) { Date.new(2015, 4, 6) }
