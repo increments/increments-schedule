@@ -192,19 +192,19 @@ module Increments
       subject { Schedule.tgif_party_day?(date) }
 
       context 'until May 2015' do
-        context "even with the second Friday of the month" do
+        context 'even with the second Friday of the month' do
           let(:date) { Date.new(2015, 5, 8) }
           it { should be false }
         end
       end
 
       context 'in June 2015' do
-        context "even with the second Friday of the month" do
+        context 'even with the second Friday of the month' do
           let(:date) { Date.new(2015, 6, 12) }
           it { should be false }
         end
 
-        context "with 19th" do
+        context 'with 19th' do
           let(:date) { Date.new(2015, 6, 19) }
           it { should be true }
         end
@@ -216,7 +216,7 @@ module Increments
           ['second', true],
           ['third', false],
           ['fourth', true],
-          ['fifth', false],
+          ['fifth', false]
         ].each_with_index do |(order, expected), index|
           context "with the #{order} Friday of a month" do
             let(:date) { Date.new(2015, 7, 3 + 7 * index) }
