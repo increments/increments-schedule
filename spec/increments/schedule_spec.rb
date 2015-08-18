@@ -229,6 +229,22 @@ module Increments
           it { should be false }
         end
       end
+
+      context 'with August 21st 2015' do
+        let(:date) { Date.new(2015, 8, 21) }
+
+        it 'returns false due to YAPC Asia' do
+          should be false
+        end
+      end
+
+      context 'with August 28th 2015' do
+        let(:date) { Date.new(2015, 8, 28) }
+
+        it 'returns true as compensation of the last week' do
+          should be true
+        end
+      end
     end
 
     describe '.each_work_time_range' do
