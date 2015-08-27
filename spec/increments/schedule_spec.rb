@@ -238,6 +238,11 @@ module Increments
         end
       end
 
+      context 'with August 27th 2015' do
+        let(:date) { Date.new(2015, 8, 27) }
+        it { should be false }
+      end
+
       context 'with August 28th 2015' do
         let(:date) { Date.new(2015, 8, 28) }
 

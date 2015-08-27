@@ -100,7 +100,7 @@ module Increments
     end
 
     def cancelled_tgif_party_day?(date)
-      rest_day?(date) || yapc_asia_day?(date)
+      second_or_fourth_friday_in_month?(date) && (rest_day?(date) || yapc_asia_day?(date))
     end
 
     def yapc_asia_day?(date)
