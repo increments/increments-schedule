@@ -5,26 +5,11 @@ module Increments
   module Schedule
     extend self # rubocop:disable ModuleFunction
 
-    DATE_OF_SPECIAL_TGIF_PARTY = Date.new(2015, 6, 19)
-    START_DATE_OF_NORMAL_TGIF_PARTY_SCHEDULE = Date.new(2015, 7, 1)
-    DATE_RANGE_OF_YAPC_ASIA = Date.new(2015, 8, 20)..Date.new(2015, 8, 22)
     INFINITY_FUTURE = Date.new(10_000, 1, 1)
     INFINITY_PAST = Date.new(0, 1, 1)
 
     def super_hanakin?(date = Date.today)
       date.friday? && pay_day?(date)
-    end
-
-    def tgif_party_day?(date = Date.today)
-      if date >= START_DATE_OF_NORMAL_TGIF_PARTY_SCHEDULE
-        if second_or_fourth_friday_in_month?(date)
-          !cancelled_tgif_party_day?(date)
-        else
-          cancelled_tgif_party_day?(date - 7) && !cancelled_tgif_party_day?(date)
-        end
-      else
-        date == DATE_OF_SPECIAL_TGIF_PARTY
-      end
     end
 
     def pay_day?(date = Date.today)
@@ -108,18 +93,6 @@ module Increments
 
     def normal_office_work_day?(date = Date.today)
       !rest_day?(date) && !normal_remote_work_day?(date)
-    end
-
-    def second_or_fourth_friday_in_month?(date)
-      date.friday? && (date.day / 7).odd?
-    end
-
-    def cancelled_tgif_party_day?(date)
-      second_or_fourth_friday_in_month?(date) && (rest_day?(date) || yapc_asia_day?(date))
-    end
-
-    def yapc_asia_day?(date)
-      DATE_RANGE_OF_YAPC_ASIA.include?(date)
     end
 
     def opening_time_of_date(date)
