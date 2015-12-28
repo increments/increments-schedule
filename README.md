@@ -41,6 +41,7 @@ $ gem install increments-schedule
 * `Increments::Schedule.rest_day?(date = Date.today)`
 * `Increments::Schedule.weekend?(date = Date.today)`
 * `Increments::Schedule.holiday?(date = Date.today)`
+* `Increments::Schedule.winter_vacation?(date = Date.today)`
 
 ### Enumeration Methods
 
@@ -55,6 +56,7 @@ $ gem install increments-schedule
 * `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
 * `Increments::Schedule.each_holiday(max_date = Date.today + 365)`
+* `Increments::Schedule.each_winter_vacation(max_date = Date.today + 365)`
 * `Increments::Schedule.each_work_time_range(max_date = Date.today + 365)`
 
 ## Development

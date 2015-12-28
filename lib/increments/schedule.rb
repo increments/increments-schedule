@@ -8,6 +8,8 @@ module Increments
     DATE_OF_SPECIAL_TGIF_PARTY = Date.new(2015, 6, 19)
     START_DATE_OF_NORMAL_TGIF_PARTY_SCHEDULE = Date.new(2015, 7, 1)
     DATE_RANGE_OF_YAPC_ASIA = Date.new(2015, 8, 20)..Date.new(2015, 8, 22)
+    INFINITY_FUTURE = Date.new(10_000, 1, 1)
+    INFINITY_PAST = Date.new(0, 1, 1)
 
     def super_hanakin?(date = Date.today)
       date.friday? && pay_day?(date)
@@ -56,7 +58,7 @@ module Increments
     end
 
     def rest_day?(date = Date.today)
-      weekend?(date) || holiday?(date)
+      weekend?(date) || holiday?(date) || winter_vacation?(date)
     end
 
     def weekend?(date = Date.today)
@@ -65,6 +67,19 @@ module Increments
 
     def holiday?(date = Date.today)
       HolidayJapan.check(date)
+    end
+
+    def winter_vacation?(date = Date.today)
+      case date.month
+      when 1
+        first_sunday = find_date(Date.new(date.year, 1, 1), :upto, &:sunday?)
+        date <= first_sunday
+      when 12
+        last_saturday = find_date(Date.new(date.year, 12, 31), :downto, &:saturday?)
+        date >= last_saturday
+      else
+        false
+      end
     end
 
     public_instance_methods.select { |name| name.to_s.end_with?('?') }.each do |predicate_method|
@@ -113,6 +128,14 @@ module Increments
 
     def closing_time_of_date(date)
       date.to_time + 19 * 60 * 60
+    end
+
+    def find_date(date, direction)
+      fail ArgumentError unless [:upto, :downto].include?(direction)
+      limit_date = direction == :upto ? INFINITY_FUTURE : INFINITY_PAST
+      date.send(direction, limit_date) do |d|
+        break d if yield d
+      end
     end
   end
 end

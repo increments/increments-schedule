@@ -252,6 +252,50 @@ module Increments
       end
     end
 
+    describe '.winter_vacation?' do
+      subject { Schedule.winter_vacation?(date) }
+
+      context 'with December 26 2014' do
+        let(:date) { Date.new(2014, 12, 26) }
+        it { should be false }
+      end
+
+      context 'with December 27 2014' do
+        let(:date) { Date.new(2014, 12, 27) }
+        it { should be true }
+      end
+
+      context 'with January 4 2015' do
+        let(:date) { Date.new(2015, 1, 4) }
+        it { should be true }
+      end
+
+      context 'with January 5 2015' do
+        let(:date) { Date.new(2015, 1, 5) }
+        it { should be false }
+      end
+
+      context 'with December 25 2015' do
+        let(:date) { Date.new(2015, 12, 25) }
+        it { should be false }
+      end
+
+      context 'with December 26 2015' do
+        let(:date) { Date.new(2015, 12, 26) }
+        it { should be true }
+      end
+
+      context 'with January 3 2016' do
+        let(:date) { Date.new(2016, 1, 3) }
+        it { should be true }
+      end
+
+      context 'with January 4 2016' do
+        let(:date) { Date.new(2016, 1, 4) }
+        it { should be false }
+      end
+    end
+
     describe '.each_work_time_range' do
       let(:current_date) { Date.new(2015, 4, 1) }
       let(:max_date) { Date.new(2015, 4, 6) }
