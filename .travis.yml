@@ -1,5 +1,7 @@
 language: ruby
-rvm: 2.2
+rvm:
+  - 2.2
+  - 2.3.0
 script: bundle exec rake ci
 sudo: false
 cache: bundler
