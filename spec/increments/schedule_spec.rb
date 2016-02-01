@@ -231,34 +231,5 @@ module Increments
         it { should be false }
       end
     end
-
-    describe '.each_work_time_range' do
-      let(:current_date) { Date.new(2015, 4, 1) }
-      let(:max_date) { Date.new(2015, 4, 6) }
-
-      around do |example|
-        Timecop.freeze(current_date) do
-          example.run
-        end
-      end
-
-      context 'when a block is given' do
-        it 'yields each work time range in localtime' do
-          expect { |probe| Schedule.each_work_time_range(max_date, &probe) }
-            .to yield_successive_args(
-              Time.local(2015, 4, 1, 10, 0)..Time.local(2015, 4, 1, 19, 0),
-              Time.local(2015, 4, 2, 10, 0)..Time.local(2015, 4, 2, 19, 0),
-              Time.local(2015, 4, 3, 10, 0)..Time.local(2015, 4, 3, 19, 0),
-              Time.local(2015, 4, 6, 10, 0)..Time.local(2015, 4, 6, 19, 0)
-            )
-        end
-      end
-
-      context 'when no block is given' do
-        it 'returns an Enumerator' do
-          expect(Schedule.each_special_remote_work_day).to be_an(Enumerator)
-        end
-      end
-    end
   end
 end

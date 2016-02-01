@@ -81,26 +81,10 @@ module Increments
       end
     end
 
-    def each_work_time_range(max_date = nil)
-      return to_enum(__method__, max_date) unless block_given?
-
-      each_work_day(max_date) do |work_day|
-        yield opening_time_of_date(work_day)..closing_time_of_date(work_day)
-      end
-    end
-
     private
 
     def normal_office_work_day?(date = Date.today)
       !rest_day?(date) && !normal_remote_work_day?(date)
-    end
-
-    def opening_time_of_date(date)
-      date.to_time + 10 * 60 * 60
-    end
-
-    def closing_time_of_date(date)
-      date.to_time + 19 * 60 * 60
     end
 
     def find_date(date, direction)
