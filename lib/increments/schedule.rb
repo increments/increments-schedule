@@ -84,7 +84,7 @@ module Increments
     private
 
     def normal_office_work_day?(date = Date.today)
-      !rest_day?(date) && !normal_remote_work_day?(date)
+      work_day?(date) && !normal_remote_work_day?(date)
     end
 
     def find_date(date, direction)
