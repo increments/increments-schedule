@@ -13,6 +13,12 @@ Style/EmptyElse:
 Style/GuardClause:
   Enabled: false
 
+Style/IndentArray:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
 Style/RegexpLiteral:
   Exclude:
     - '*.gemspec'
