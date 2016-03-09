@@ -20,7 +20,7 @@ namespace :readme do
     puts 'Validating README.md...'
 
     unless File.read('README.md') == generate_readme
-      fail <<-END.gsub(/^\s+\|/, '').chomp
+      raise <<-END.gsub(/^\s+\|/, '').chomp
         |README.md and README.md.erb are out of sync!
         |If you need to modify the content of README.md:
         |  * Edit README.md.erb.

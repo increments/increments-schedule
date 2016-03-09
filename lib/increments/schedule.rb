@@ -92,7 +92,7 @@ module Increments
     end
 
     def find_date(date, direction)
-      fail ArgumentError unless [:upto, :downto].include?(direction)
+      raise ArgumentError unless [:upto, :downto].include?(direction)
       limit_date = direction == :upto ? INFINITY_FUTURE : INFINITY_PAST
       date.send(direction, limit_date) do |d|
         break d if yield d
