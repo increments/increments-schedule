@@ -8,6 +8,10 @@ module Increments
     INFINITY_FUTURE = Date.new(10_000, 1, 1)
     INFINITY_PAST = Date.new(0, 1, 1)
 
+    def foundation_anniversary?(date = Date.today)
+      date.month == 2 && date.day == 29
+    end
+
     def super_hanakin?(date = Date.today)
       date.friday? && pay_day?(date)
     end

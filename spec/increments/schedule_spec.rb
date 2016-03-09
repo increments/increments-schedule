@@ -47,6 +47,30 @@ module Increments
       end
     end
 
+    describe '.foundation_anniversary?' do
+      subject { Schedule.foundation_anniversary?(date) }
+
+      context 'with February 29 2012' do
+        let(:date) { Date.new(2012, 2, 29) }
+        it { should be true }
+      end
+
+      context 'with February 29 2016' do
+        let(:date) { Date.new(2012, 2, 29) }
+        it { should be true }
+      end
+
+      context 'with February 28 2012' do
+        let(:date) { Date.new(2012, 2, 28) }
+        it { should be false }
+      end
+
+      context 'with February 28 2013' do
+        let(:date) { Date.new(2013, 2, 28) }
+        it { should be false }
+      end
+    end
+
     #      April 2015
     # Su Mo Tu We Th Fr Sa
     #           1  2  3  4

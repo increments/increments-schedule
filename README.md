@@ -30,6 +30,7 @@ $ gem install increments-schedule
 
 ### Predicate Methods
 
+* `Increments::Schedule.foundation_anniversary?(date = Date.today)`
 * `Increments::Schedule.super_hanakin?(date = Date.today)`
 * `Increments::Schedule.pay_day?(date = Date.today)`
 * `Increments::Schedule.work_day?(date = Date.today)`
@@ -44,6 +45,7 @@ $ gem install increments-schedule
 
 ### Enumeration Methods
 
+* `Increments::Schedule.each_foundation_anniversary(max_date = Date.today + 365)`
 * `Increments::Schedule.each_super_hanakin(max_date = Date.today + 365)`
 * `Increments::Schedule.each_pay_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_work_day(max_date = Date.today + 365)`
