@@ -29,22 +29,7 @@ module Increments
       !rest_day?(date)
     end
 
-    def office_work_day?(date = Date.today)
-      work_day?(date) && !remote_work_day?(date)
-    end
-
-    def remote_work_day?(date = Date.today)
-      normal_remote_work_day?(date) || special_remote_work_day?(date)
-    end
-
-    def normal_remote_work_day?(date = Date.today)
-      date.monday? && work_day?(date)
-    end
-
-    def special_remote_work_day?(date = Date.today)
-      normal_office_work_day?(date) &&
-        !normal_office_work_day?(date - 1) && !normal_office_work_day?(date + 1)
-    end
+    alias_method :remote_work_day?, :work_day?
 
     def rest_day?(date = Date.today)
       weekend?(date) || holiday?(date) || winter_vacation?(date)
@@ -86,10 +71,6 @@ module Increments
     end
 
     private
-
-    def normal_office_work_day?(date = Date.today)
-      work_day?(date) && !normal_remote_work_day?(date)
-    end
 
     def find_date(date, direction)
       raise ArgumentError unless [:upto, :downto].include?(direction)
