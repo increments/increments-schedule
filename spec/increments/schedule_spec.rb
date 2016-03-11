@@ -26,12 +26,12 @@ module Increments
         it 'yields each special remote work day over the next year' do
           expect { |probe| Schedule.each_super_hanakin(&probe) }
             .to yield_successive_args(
-              Date.new(2015,  4, 24),
-              Date.new(2015,  7, 24),
-              Date.new(2015,  9, 25),
+              Date.new(2015, 4, 24),
+              Date.new(2015, 7, 24),
+              Date.new(2015, 9, 25),
               Date.new(2015, 10, 23),
               Date.new(2015, 12, 25),
-              Date.new(2016,  3, 25)
+              Date.new(2016, 3, 25)
             )
         end
       end

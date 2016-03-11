@@ -29,7 +29,7 @@ module Increments
       !rest_day?(date)
     end
 
-    alias_method :remote_work_day?, :work_day?
+    alias remote_work_day? work_day?
 
     def rest_day?(date = Date.today)
       weekend?(date) || holiday?(date) || winter_vacation?(date)
