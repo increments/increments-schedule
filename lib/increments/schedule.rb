@@ -32,7 +32,7 @@ module Increments
     alias remote_work_day? work_day?
 
     def rest_day?(date = Date.today)
-      weekend?(date) || holiday?(date) || winter_vacation?(date)
+      weekend?(date) || holiday?(date) || summer_vacation?(date) || winter_vacation?(date)
     end
 
     def weekend?(date = Date.today)
@@ -41,6 +41,13 @@ module Increments
 
     def holiday?(date = Date.today)
       HolidayJapan.check(date)
+    end
+
+    def summer_vacation?(date = Date.today)
+      return false unless date.month == 8
+      return true if date.day.between?(13, 16)
+      return false if !weekend?(date) && !holiday?(date)
+      any_adjacent_date?(date) { |adjacent_date| summer_vacation?(adjacent_date) }
     end
 
     def winter_vacation?(date = Date.today)
@@ -71,6 +78,12 @@ module Increments
     end
 
     private
+
+    def any_adjacent_date?(date, &_block)
+      [(date - 1), (date + 1)].any? do |adjacent_date|
+        yield adjacent_date
+      end
+    end
 
     def find_date(date, direction)
       raise ArgumentError unless [:upto, :downto].include?(direction)

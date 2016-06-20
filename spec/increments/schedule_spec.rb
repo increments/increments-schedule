@@ -110,6 +110,70 @@ module Increments
       end
     end
 
+    describe '.summer_vacation?' do
+      subject { Schedule.summer_vacation?(date) }
+
+      context 'with August 12 2014' do
+        let(:date) { Date.new(2014, 8, 12) }
+        it { should be false }
+      end
+
+      context 'with August 13 2014' do
+        let(:date) { Date.new(2014, 8, 13) }
+        it { should be true }
+      end
+
+      context 'with August 17 2014' do
+        let(:date) { Date.new(2014, 8, 17) }
+        it { should be true }
+      end
+
+      context 'with August 18 2014' do
+        let(:date) { Date.new(2014, 8, 18) }
+        it { should be false }
+      end
+
+      context 'with August 12 2015' do
+        let(:date) { Date.new(2015, 8, 12) }
+        it { should be false }
+      end
+
+      context 'with August 13 2015' do
+        let(:date) { Date.new(2015, 8, 13) }
+        it { should be true }
+      end
+
+      context 'with August 16 2015' do
+        let(:date) { Date.new(2015, 8, 16) }
+        it { should be true }
+      end
+
+      context 'with August 17 2015' do
+        let(:date) { Date.new(2015, 8, 17) }
+        it { should be false }
+      end
+
+      context 'with August 12 2016' do
+        let(:date) { Date.new(2016, 8, 12) }
+        it { should be false }
+      end
+
+      context 'with August 13 2016' do
+        let(:date) { Date.new(2016, 8, 13) }
+        it { should be true }
+      end
+
+      context 'with August 16 2016' do
+        let(:date) { Date.new(2016, 8, 16) }
+        it { should be true }
+      end
+
+      context 'with August 17 2016' do
+        let(:date) { Date.new(2016, 8, 17) }
+        it { should be false }
+      end
+    end
+
     describe '.winter_vacation?' do
       subject { Schedule.winter_vacation?(date) }
 
