@@ -3,14 +3,14 @@ require 'increments/schedule'
 module Increments
   RSpec.describe Schedule do
     it 'responds to enumeration methods for each date predicate method' do
-      expect(Schedule).to respond_to(*%i(
-        each_super_hanakin
-        each_pay_day
-        each_remote_work_day
-        each_rest_day
-        each_weekend
-        each_holiday
-      ))
+      expect(Schedule).to respond_to(
+        :each_super_hanakin,
+        :each_pay_day,
+        :each_remote_work_day,
+        :each_rest_day,
+        :each_weekend,
+        :each_holiday
+      )
     end
 
     describe 'date enumeration methods' do
@@ -80,14 +80,24 @@ module Increments
         it { should be false }
       end
 
-      context 'with a weekday 24th and the next 25th is a rest day' do
+      context 'with a weekday 24th whose next 25th is a rest day' do
         let(:date) { Date.new(2015, 4, 24) }
         it { should be true }
       end
 
-      context 'with a weekday 23th and the next 24th and 25th are rest day' do
+      context 'with a weekday 23th whose next 24th and 25th are rest day' do
         let(:date) { Date.new(2015, 1, 23) }
         it { should be true }
+      end
+
+      context 'with a weekday 22th whose next 23rd, 24th and 25th are rest day' do
+        let(:date) { Date.new(2016, 12, 22) }
+        it { should be true }
+      end
+
+      context 'with a rest day 23rd whose next 24th and 25th are rest day' do
+        let(:date) { Date.new(2016, 12, 23) }
+        it { should be false }
       end
 
       context 'with a rest day 26th' do

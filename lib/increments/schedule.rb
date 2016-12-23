@@ -18,6 +18,7 @@ module Increments
 
     def pay_day?(date = Date.today)
       return work_day?(date) if date.day == 25
+      return false if rest_day?(date)
       next_basic_pay_day = Date.new(date.year, date.month, 25)
       next_basic_pay_day = next_basic_pay_day.next_month if date > next_basic_pay_day
       date.next_day.upto(next_basic_pay_day).all? do |date_until_basic_pay_day|
