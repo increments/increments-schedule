@@ -90,6 +90,16 @@ module Increments
         it { should be true }
       end
 
+      context 'with a weekday 22th whose next 23rd, 24th and 25th are rest day' do
+        let(:date) { Date.new(2016, 12, 22) }
+        it { should be true }
+      end
+
+      context 'with a rest day 23rd whose next 24th and 25th are rest day' do
+        let(:date) { Date.new(2016, 12, 23) }
+        it { should be false }
+      end
+
       context 'with a rest day 26th' do
         let(:date) { Date.new(2015, 3, 26) }
         it { should be false }
