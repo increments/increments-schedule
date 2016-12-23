@@ -44,8 +44,10 @@ module Increments
     def winter_vacation?(date = Date.today)
       case date.month
       when 1
+        return true if date.day <= 3
         date <= ExtendedDate.new(date.year, 1, 1).find_next(&:sunday?)
       when 12
+        return true if date.day >= 28
         date >= ExtendedDate.new(date.year, 12, 31).find_previous(&:saturday?)
       else
         false
