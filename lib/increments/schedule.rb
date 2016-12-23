@@ -5,9 +5,6 @@ module Increments
   module Schedule
     extend self # rubocop:disable ModuleFunction
 
-    INFINITY_FUTURE = Date.new(10_000, 1, 1)
-    INFINITY_PAST = Date.new(0, 1, 1)
-
     def foundation_anniversary?(date = Date.today)
       date.month == 2 && date.day == 29
     end
@@ -47,11 +44,9 @@ module Increments
     def winter_vacation?(date = Date.today)
       case date.month
       when 1
-        first_sunday = find_date(Date.new(date.year, 1, 1), :upto, &:sunday?)
-        date <= first_sunday
+        date <= ExtendedDate.new(date.year, 1, 1).find_next(&:sunday?)
       when 12
-        last_saturday = find_date(Date.new(date.year, 12, 31), :downto, &:saturday?)
-        date >= last_saturday
+        date >= ExtendedDate.new(date.year, 12, 31).find_previous(&:saturday?)
       else
         false
       end
@@ -71,13 +66,20 @@ module Increments
       end
     end
 
-    private
+    class ExtendedDate < Date
+      INFINITY_FUTURE = Date.new(10_000, 1, 1)
+      INFINITY_PAST = Date.new(0, 1, 1)
 
-    def find_date(date, direction)
-      raise ArgumentError unless [:upto, :downto].include?(direction)
-      limit_date = direction == :upto ? INFINITY_FUTURE : INFINITY_PAST
-      date.send(direction, limit_date) do |d|
-        break d if yield d
+      def find_next
+        upto(INFINITY_FUTURE) do |date|
+          break date if yield date
+        end
+      end
+
+      def find_previous
+        downto(INFINITY_PAST) do |date|
+          break date if yield date
+        end
       end
     end
   end
