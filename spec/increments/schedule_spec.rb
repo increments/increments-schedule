@@ -80,12 +80,12 @@ module Increments
         it { should be false }
       end
 
-      context 'with a weekday 24th and the next 25th is a rest day' do
+      context 'with a weekday 24th whose next 25th is a rest day' do
         let(:date) { Date.new(2015, 4, 24) }
         it { should be true }
       end
 
-      context 'with a weekday 23th and the next 24th and 25th are rest day' do
+      context 'with a weekday 23th whose next 24th and 25th are rest day' do
         let(:date) { Date.new(2015, 1, 23) }
         it { should be true }
       end
