@@ -6,7 +6,6 @@ module Increments
       expect(Schedule).to respond_to(
         :each_super_hanakin,
         :each_pay_day,
-        :each_remote_work_day,
         :each_rest_day,
         :each_weekend,
         :each_holiday

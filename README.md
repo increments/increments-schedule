@@ -34,7 +34,6 @@ $ gem install increments-schedule
 * `Increments::Schedule.super_hanakin?(date = Date.today)`
 * `Increments::Schedule.pay_day?(date = Date.today)`
 * `Increments::Schedule.work_day?(date = Date.today)`
-* `Increments::Schedule.remote_work_day?(date = Date.today)`
 * `Increments::Schedule.rest_day?(date = Date.today)`
 * `Increments::Schedule.weekend?(date = Date.today)`
 * `Increments::Schedule.holiday?(date = Date.today)`
@@ -46,7 +45,6 @@ $ gem install increments-schedule
 * `Increments::Schedule.each_super_hanakin(max_date = Date.today + 365)`
 * `Increments::Schedule.each_pay_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_remote_work_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
 * `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
 * `Increments::Schedule.each_holiday(max_date = Date.today + 365)`
