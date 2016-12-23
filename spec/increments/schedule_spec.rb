@@ -3,14 +3,14 @@ require 'increments/schedule'
 module Increments
   RSpec.describe Schedule do
     it 'responds to enumeration methods for each date predicate method' do
-      expect(Schedule).to respond_to(*%i(
-        each_super_hanakin
-        each_pay_day
-        each_remote_work_day
-        each_rest_day
-        each_weekend
-        each_holiday
-      ))
+      expect(Schedule).to respond_to(
+        :each_super_hanakin,
+        :each_pay_day,
+        :each_remote_work_day,
+        :each_rest_day,
+        :each_weekend,
+        :each_holiday
+      )
     end
 
     describe 'date enumeration methods' do
