@@ -51,7 +51,7 @@ module Increments
       end
 
       context 'with February 29 2016' do
-        let(:date) { Date.new(2012, 2, 29) }
+        let(:date) { Date.new(2016, 2, 29) }
         it { should be true }
       end
 
