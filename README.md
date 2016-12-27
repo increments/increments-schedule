@@ -4,7 +4,7 @@
 
 # Increments::Schedule
 
-Find out our special remote days and eagerly wait for them!
+**Increments::Schedule** is a convenient library for checking Increments' company schedule.
 
 ## Installation
 

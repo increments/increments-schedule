@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Yuji Nakayama']
   spec.email         = ['nkymyj@gmail.com']
 
-  spec.summary       = "Increments' schedule"
+  spec.summary       = "Convenient library for checking Increments' company schedule"
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/increments/increments-schedule'
   spec.license       = 'MIT'
