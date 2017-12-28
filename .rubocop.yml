@@ -5,6 +5,12 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Max: 100
 
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
 Metrics/ModuleLength:
   Enabled: false
 

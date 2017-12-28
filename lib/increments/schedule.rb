@@ -42,11 +42,9 @@ module Increments
     def winter_vacation?(date = Date.today)
       case date.month
       when 1
-        return true if date.day <= 3
-        date <= ExtendedDate.new(date.year, 1, 1).find_next(&:sunday?)
+        first_three_days_or_adjoining_weekend?(date)
       when 12
-        return true if date.day >= 28
-        date >= ExtendedDate.new(date.year, 12, 31).find_previous(&:saturday?)
+        last_four_days_or_after_last_saturday?(date)
       else
         false
       end
@@ -64,6 +62,21 @@ module Increments
           block.call(date) if send(predicate_method, date)
         end
       end
+    end
+
+    private
+
+    def first_three_days_or_adjoining_weekend?(date)
+      jan_3 = ExtendedDate.new(date.year, 1, 3)
+      return true if date <= jan_3
+      first_sunday = ExtendedDate.new(date.year, 1, 1).find_next(&:sunday?)
+      return false unless date.between?(jan_3, first_sunday)
+      jan_3.next_day.upto(first_sunday).all? { |d| weekend?(d) }
+    end
+
+    def last_four_days_or_after_last_saturday?(date)
+      return true if date.day >= 28
+      date >= ExtendedDate.new(date.year, 12, 31).find_previous(&:saturday?)
     end
 
     class ExtendedDate < Date
