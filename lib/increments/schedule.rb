@@ -29,7 +29,7 @@ module Increments
     end
 
     def rest_day?(date = Date.today)
-      weekend?(date) || holiday?(date) || winter_vacation?(date)
+      weekend?(date) || holiday?(date) || winter_vacation_day?(date)
     end
 
     def weekend?(date = Date.today)
@@ -40,7 +40,7 @@ module Increments
       HolidayJapan.check(date)
     end
 
-    def winter_vacation?(date = Date.today)
+    def winter_vacation_day?(date = Date.today)
       case date.month
       when 1
         first_three_days_or_adjoining_weekend?(date)
@@ -50,6 +50,8 @@ module Increments
         false
       end
     end
+
+    alias winter_vacation? winter_vacation_day?
 
     public_instance_methods.select { |name| name.to_s.end_with?('?') }.each do |predicate_method|
       enumeration_method = 'each_' + predicate_method.to_s.sub(/\?\z/, '')

@@ -32,8 +32,8 @@ $ gem install increments-schedule
 
 <%=
 methods = Increments::Schedule.public_instance_methods.select do |method|
-  method.to_s.end_with?('?')
-end
+  method.to_s.end_with?('?') && method != :winter_vacation?
+end.sort
 
 methods.map do |method|
   "* `Increments::Schedule.#{method}(date = Date.today)`"
@@ -44,8 +44,8 @@ end.join("\n")
 
 <%=
 methods = Increments::Schedule.public_instance_methods.select do |method|
-  method.to_s.start_with?('each_')
-end
+  method.to_s.start_with?('each_') && method != :each_winter_vacation
+end.sort
 
 methods.map do |method|
   "* `Increments::Schedule.#{method}(max_date = Date.today + 365)`"

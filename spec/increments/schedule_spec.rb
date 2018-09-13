@@ -119,8 +119,8 @@ module Increments
       end
     end
 
-    describe '.winter_vacation?' do
-      subject { Schedule.winter_vacation?(date) }
+    describe '.winter_vacation_day?' do
+      subject { Schedule.winter_vacation_day?(date) }
 
       context 'on 2014-2015' do
         context 'with December 26 2014' do

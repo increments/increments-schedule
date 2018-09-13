@@ -31,24 +31,24 @@ $ gem install increments-schedule
 ### Predicate Methods
 
 * `Increments::Schedule.foundation_anniversary?(date = Date.today)`
-* `Increments::Schedule.super_hanakin?(date = Date.today)`
-* `Increments::Schedule.pay_day?(date = Date.today)`
-* `Increments::Schedule.work_day?(date = Date.today)`
-* `Increments::Schedule.rest_day?(date = Date.today)`
-* `Increments::Schedule.weekend?(date = Date.today)`
 * `Increments::Schedule.holiday?(date = Date.today)`
-* `Increments::Schedule.winter_vacation?(date = Date.today)`
+* `Increments::Schedule.pay_day?(date = Date.today)`
+* `Increments::Schedule.rest_day?(date = Date.today)`
+* `Increments::Schedule.super_hanakin?(date = Date.today)`
+* `Increments::Schedule.weekend?(date = Date.today)`
+* `Increments::Schedule.winter_vacation_day?(date = Date.today)`
+* `Increments::Schedule.work_day?(date = Date.today)`
 
 ### Enumeration Methods
 
 * `Increments::Schedule.each_foundation_anniversary(max_date = Date.today + 365)`
-* `Increments::Schedule.each_super_hanakin(max_date = Date.today + 365)`
-* `Increments::Schedule.each_pay_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_work_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
-* `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
 * `Increments::Schedule.each_holiday(max_date = Date.today + 365)`
-* `Increments::Schedule.each_winter_vacation(max_date = Date.today + 365)`
+* `Increments::Schedule.each_pay_day(max_date = Date.today + 365)`
+* `Increments::Schedule.each_rest_day(max_date = Date.today + 365)`
+* `Increments::Schedule.each_super_hanakin(max_date = Date.today + 365)`
+* `Increments::Schedule.each_weekend(max_date = Date.today + 365)`
+* `Increments::Schedule.each_winter_vacation_day(max_date = Date.today + 365)`
+* `Increments::Schedule.each_work_day(max_date = Date.today + 365)`
 
 ## Development
 
