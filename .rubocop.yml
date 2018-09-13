@@ -5,6 +5,10 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Max: 100
 
+Naming/FileName:
+  Exclude:
+    - increments-schedule.gemspec
+
 Naming/HeredocDelimiterNaming:
   Enabled: false
 

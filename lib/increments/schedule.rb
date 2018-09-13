@@ -16,6 +16,7 @@ module Increments
     def pay_day?(date = Date.today)
       return work_day?(date) if date.day == 25
       return false if rest_day?(date)
+
       next_basic_pay_day = Date.new(date.year, date.month, 25)
       next_basic_pay_day = next_basic_pay_day.next_month if date > next_basic_pay_day
       date.next_day.upto(next_basic_pay_day).all? do |date_until_basic_pay_day|
@@ -69,13 +70,16 @@ module Increments
     def first_three_days_or_adjoining_weekend?(date)
       jan_3 = ExtendedDate.new(date.year, 1, 3)
       return true if date <= jan_3
+
       first_sunday = ExtendedDate.new(date.year, 1, 1).find_next(&:sunday?)
       return false unless date.between?(jan_3, first_sunday)
+
       jan_3.next_day.upto(first_sunday).all? { |d| weekend?(d) }
     end
 
     def last_four_days_or_after_last_saturday?(date)
       return true if date.day >= 28
+
       date >= ExtendedDate.new(date.year, 12, 31).find_previous(&:saturday?)
     end
 
