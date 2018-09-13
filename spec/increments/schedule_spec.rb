@@ -42,6 +42,20 @@ module Increments
       end
     end
 
+    describe '.remote_work_day?' do
+      subject { Schedule.remote_work_day?(date) }
+
+      context 'with a Wednesday work day' do
+        let(:date) { Date.new(2018, 9, 12) }
+        it { should be true }
+      end
+
+      context 'with a Thursday work day' do
+        let(:date) { Date.new(2018, 9, 11) }
+        it { should be false }
+      end
+    end
+
     describe '.foundation_anniversary?' do
       subject { Schedule.foundation_anniversary?(date) }
 

@@ -28,6 +28,10 @@ module Increments
       !rest_day?(date)
     end
 
+    def remote_work_day?(date = Date.today)
+      date.wednesday? && work_day?(date)
+    end
+
     def rest_day?(date = Date.today)
       weekend?(date) || holiday?(date) || winter_vacation_day?(date)
     end
