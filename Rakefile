@@ -41,7 +41,4 @@ def generate_readme
   erb.result(binding)
 end
 
-ci_tasks = %w[spec rubocop]
-# For some reason MRI 2.3 returns the method list with different order.
-ci_tasks << 'readme:validate' if RUBY_VERSION.start_with?('2.2.')
-task ci: ci_tasks
+task ci: %w[spec rubocop readme:validate]
