@@ -2,8 +2,7 @@ Layout/IndentArray:
   Enabled: false
 
 Metrics/BlockLength:
-  Exclude:
-    - spec/**/*.rb
+  Enabled: false
 
 Metrics/LineLength:
   Max: 100

@@ -223,6 +223,28 @@ module Increments
           it { should be false }
         end
       end
+
+      context 'on 2018-2019' do
+        context 'with December 28 2018' do
+          let(:date) { Date.new(2018, 12, 28) }
+          it { should be false }
+        end
+
+        context 'with December 29 2018' do
+          let(:date) { Date.new(2018, 12, 29) }
+          it { should be true }
+        end
+
+        context 'with January 6 2019' do
+          let(:date) { Date.new(2019, 1, 6) }
+          it { should be true }
+        end
+
+        context 'with January 7 2019' do
+          let(:date) { Date.new(2019, 1, 7) }
+          it { should be false }
+        end
+      end
     end
   end
 end
