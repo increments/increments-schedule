@@ -15,6 +15,10 @@ module Increments
       date.friday? && pay_day?(date)
     end
 
+    def end_of_work_day?(date = Date.today)
+      return work_day?(date) if date
+    end
+
     def pay_day?(date = Date.today)
       return work_day?(date) if date.day == 25
       return false if rest_day?(date)

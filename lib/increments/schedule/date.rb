@@ -1,3 +1,5 @@
+require 'date'
+
 module Increments
   module Schedule
     class Date < ::Date
@@ -14,6 +16,11 @@ module Increments
         downto(INFINITY_PAST) do |date|
           break date if yield date
         end
+      end
+
+      def end_of_month
+        date = Date.today
+        date.next_month - (date.next_month.day - 1)
       end
     end
   end

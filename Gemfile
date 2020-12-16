@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'rake', '~> 12.0'
-  gem 'rspec', '~> 3.2'
-  gem 'rubocop', '~> 0.52'
-  gem 'timecop', '~> 0.7'
+  gem 'rake'
+  gem 'rspec'
+  gem 'rubocop'
+  gem 'timecop'
 end
 
 group :development do
-  gem 'pry', '~> 0.10'
+  gem 'pry'
 end
