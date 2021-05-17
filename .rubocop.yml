@@ -1,7 +1,13 @@
-Layout/IndentArray:
+Layout/FirstArrayElementIndentation:
   Enabled: false
 
 Metrics/BlockLength:
+  Enabled: false
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
   Enabled: false
 
 Metrics/LineLength:
