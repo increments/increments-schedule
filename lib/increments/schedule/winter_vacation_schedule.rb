@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Increments
   module Schedule
     WinterVacationSchedule = Struct.new(:date) do

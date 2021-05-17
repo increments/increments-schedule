@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'increments/schedule'
 
 module Increments
@@ -25,10 +27,10 @@ module Increments
         it 'yields each special remote work day over the next year' do
           expect { |probe| Schedule.each_super_hanakin(&probe) }
             .to yield_successive_args(
-              Date.new(2015, 05, 15),
+              Date.new(2015, 0o5, 15),
               Date.new(2015, 8, 14),
               Date.new(2015, 11, 13),
-              Date.new(2016, 01, 15),
+              Date.new(2016, 0o1, 15)
             )
         end
       end

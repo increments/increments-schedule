@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'increments/schedule/date'
 require 'increments/schedule/version'
 require 'increments/schedule/winter_vacation_schedule'
@@ -5,7 +7,7 @@ require 'holiday_japan'
 
 module Increments
   module Schedule
-    extend self # rubocop:disable ModuleFunction
+    extend self # rubocop:disable Style/ModuleFunction
 
     def foundation_anniversary?(date = Date.today)
       date.month == 2 && date.day == 29
@@ -53,7 +55,7 @@ module Increments
     alias winter_vacation? winter_vacation_day?
 
     public_instance_methods.select { |name| name.to_s.end_with?('?') }.each do |predicate_method|
-      enumeration_method = 'each_' + predicate_method.to_s.sub(/\?\z/, '')
+      enumeration_method = "each_#{predicate_method.to_s.sub(/\?\z/, '')}"
 
       define_method(enumeration_method) do |max_date = nil, &block|
         return to_enum(__method__, max_date) unless block

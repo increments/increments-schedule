@@ -4,6 +4,12 @@ Layout/FirstArrayElementIndentation:
 Metrics/BlockLength:
   Enabled: false
 
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 100
 
