@@ -25,12 +25,10 @@ module Increments
         it 'yields each special remote work day over the next year' do
           expect { |probe| Schedule.each_super_hanakin(&probe) }
             .to yield_successive_args(
-              Date.new(2015, 4, 24),
-              Date.new(2015, 7, 24),
-              Date.new(2015, 9, 25),
-              Date.new(2015, 10, 23),
-              Date.new(2015, 12, 25),
-              Date.new(2016, 3, 25)
+              Date.new(2015, 05, 15),
+              Date.new(2015, 8, 14),
+              Date.new(2015, 11, 13),
+              Date.new(2016, 01, 15),
             )
         end
       end
@@ -83,38 +81,38 @@ module Increments
     describe '.pay_day?' do
       subject { Schedule.pay_day?(date) }
 
-      context 'with a weekday 25th' do
-        let(:date) { Date.new(2015, 3, 25) }
+      context 'with a weekday 15th' do
+        let(:date) { Date.new(2021, 2, 15) }
         it { should be true }
       end
 
-      context 'with a rest day 25th' do
-        let(:date) { Date.new(2015, 4, 25) }
+      context 'with a rest day 15th' do
+        let(:date) { Date.new(2021, 5, 15) }
         it { should be false }
       end
 
-      context 'with a weekday 24th whose next 25th is a rest day' do
-        let(:date) { Date.new(2015, 4, 24) }
+      context 'with a weekday 14th whose next 15th is a rest day' do
+        let(:date) { Date.new(2021, 5, 14) }
         it { should be true }
       end
 
       context 'with a weekday 23th whose next 24th and 25th are rest day' do
-        let(:date) { Date.new(2015, 1, 23) }
+        let(:date) { Date.new(2022, 5, 13) }
         it { should be true }
       end
 
-      context 'with a weekday 22th whose next 23rd, 24th and 25th are rest day' do
-        let(:date) { Date.new(2016, 12, 22) }
+      context 'with a weekday 12th whose next 13rd, 14th and 15th are rest day' do
+        let(:date) { Date.new(2025, 9, 12) }
         it { should be true }
       end
 
       context 'with a rest day 23rd whose next 24th and 25th are rest day' do
-        let(:date) { Date.new(2016, 12, 23) }
+        let(:date) { Date.new(2025, 9, 13) }
         it { should be false }
       end
 
-      context 'with a rest day 26th' do
-        let(:date) { Date.new(2015, 3, 26) }
+      context 'with a rest day 16th' do
+        let(:date) { Date.new(2024, 9, 16) }
         it { should be false }
       end
     end
@@ -123,7 +121,7 @@ module Increments
       subject { Schedule.super_hanakin?(date) }
 
       context 'with a Friday pay day' do
-        let(:date) { Date.new(2015, 4, 24) }
+        let(:date) { Date.new(2024, 6, 14) }
         it { should be true }
       end
 
