@@ -1,5 +1,5 @@
 [![Gem Version](http://img.shields.io/gem/v/increments-schedule.svg?style=flat)](http://badge.fury.io/rb/increments-schedule)
-[![Build Status](https://travis-ci.org/increments/increments-schedule.svg?branch=master&style=flat)](https://travis-ci.org/increments/increments-schedule)
+[![Build Status](https://github.com/increments/increments-schedule/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/increments/increments-schedule/actions/workflows/test.yml)
 
 # Increments::Schedule
 
