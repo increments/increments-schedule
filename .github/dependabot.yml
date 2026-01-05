@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      timezone: "Asia/Tokyo"
+    versioning-strategy: increase
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
